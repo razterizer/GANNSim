@@ -15,6 +15,8 @@ https://youtu.be/uG-YQZPrTMU
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/b5d4651b-0bbe-4ff3-8951-661cc8344159)
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/c974e378-7243-4708-b3f6-6f1514b3a5f2)
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/04caaba0-acce-4875-b364-9c1d2ed4e509)
+![image](https://github.com/razterizer/GANNSim/assets/32767250/9338c3e1-ebdc-47df-b634-f00276ec5d51)
+
 
 
 ## How to Build and Run
