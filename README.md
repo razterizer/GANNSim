@@ -3,6 +3,7 @@
 This is a GANN Simulator (Genetic Algorithms Neural Network) that allows you to take a designed GANN creature designed in [`GANNDesign`](https://github.com/razterizer/GANNDesign) and simulate it.
 
 https://youtu.be/WuagYGnwiw0
+
 https://youtu.be/uG-YQZPrTMU
 
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/35c259fe-8db7-41ce-a5d1-cbe9a7692fc9)
