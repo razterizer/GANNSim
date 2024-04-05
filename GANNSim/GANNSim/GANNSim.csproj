@@ -65,9 +65,8 @@
     <Reference Include="AviFile">
       <HintPath>.\AviFile.dll</HintPath>
     </Reference>
-    <Reference Include="MathLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MathLib\MathLib\bin\Release\MathLib.dll</HintPath>
+    <Reference Include="MathLib">
+      <HintPath>..\..\..\CSMathLib\MathLib\MathLib\bin\Release\MathLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
