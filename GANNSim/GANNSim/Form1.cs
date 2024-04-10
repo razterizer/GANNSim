@@ -330,17 +330,22 @@ namespace GANNSim
             }
             else if (!buttonStart.Enabled)
             {
+                // Capping subiters so that we don't accidentally simulate more steps than we set the limit to.
+                int remaining_main_subiters = m_bgw_params.num_main_subiters;
+                if (m_num_iters + remaining_main_subiters >= m_bgw_params.evaluation_cycles_limit)
+                    remaining_main_subiters = m_bgw_params.evaluation_cycles_limit - m_num_iters;
+                    
                 m_population.CurrPopulationStepSimulation(
                     m_bgw_params.dt,
                     m_bgw_params.integration_method,
                     m_bgw_params.use_brain,
-                    m_bgw_params.num_main_subiters,
+                    remaining_main_subiters,
                     m_bgw_params.num_brain_subiters,
                     m_bgw_params.num_phys_subiters,
                     m_bgw_params.show_best,
                     m_bgw_params.only_run_relevant,
                     m_bgw_params.thread_priority);
-                m_num_iters += m_bgw_params.num_main_subiters;
+                m_num_iters += remaining_main_subiters;
             }
         }
 
