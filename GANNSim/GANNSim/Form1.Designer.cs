@@ -72,7 +72,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.checkBoxDrawDNA = new System.Windows.Forms.CheckBox();
             this.checkBoxDrawName = new System.Windows.Forms.CheckBox();
-            this.checkBox2Kids = new System.Windows.Forms.CheckBox();
             this.checkBoxDropOnHead = new System.Windows.Forms.CheckBox();
             this.checkBoxDbgDrawAngSprings = new System.Windows.Forms.CheckBox();
             this.labelBestFitness = new System.Windows.Forms.Label();
@@ -91,6 +90,8 @@
             this.panelCanvas = new GANNSim.Canvas();
             this.textBoxLeaps = new System.Windows.Forms.TextBox();
             this.labelLeaps = new System.Windows.Forms.Label();
+            this.labelNumChildrenPerMating = new System.Windows.Forms.Label();
+            this.textBoxNumChildrenPerMating = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonStart
@@ -491,19 +492,6 @@
             this.checkBoxDrawName.Text = "Name";
             this.checkBoxDrawName.UseVisualStyleBackColor = true;
             // 
-            // checkBox2Kids
-            // 
-            this.checkBox2Kids.AutoSize = true;
-            this.checkBox2Kids.Checked = true;
-            this.checkBox2Kids.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2Kids.Location = new System.Drawing.Point(897, 66);
-            this.checkBox2Kids.Name = "checkBox2Kids";
-            this.checkBox2Kids.Size = new System.Drawing.Size(104, 17);
-            this.checkBox2Kids.TabIndex = 12;
-            this.checkBox2Kids.Text = "Two-Child Policy";
-            this.checkBox2Kids.UseVisualStyleBackColor = true;
-            this.checkBox2Kids.CheckedChanged += new System.EventHandler(this.checkBoxAdditiveNoise_CheckedChanged);
-            // 
             // checkBoxDropOnHead
             // 
             this.checkBoxDropOnHead.AutoSize = true;
@@ -680,11 +668,30 @@
             this.labelLeaps.TabIndex = 25;
             this.labelLeaps.Text = "# Leaps:";
             // 
+            // labelNumChildrenPerMating
+            // 
+            this.labelNumChildrenPerMating.AutoSize = true;
+            this.labelNumChildrenPerMating.Location = new System.Drawing.Point(894, 48);
+            this.labelNumChildrenPerMating.Name = "labelNumChildrenPerMating";
+            this.labelNumChildrenPerMating.Size = new System.Drawing.Size(101, 13);
+            this.labelNumChildrenPerMating.TabIndex = 26;
+            this.labelNumChildrenPerMating.Text = "# Children / Mating:";
+            // 
+            // textBoxNumChildrenPerMating
+            // 
+            this.textBoxNumChildrenPerMating.Location = new System.Drawing.Point(897, 64);
+            this.textBoxNumChildrenPerMating.Name = "textBoxNumChildrenPerMating";
+            this.textBoxNumChildrenPerMating.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumChildrenPerMating.TabIndex = 27;
+            this.textBoxNumChildrenPerMating.Text = "2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 474);
+            this.Controls.Add(this.textBoxNumChildrenPerMating);
+            this.Controls.Add(this.labelNumChildrenPerMating);
             this.Controls.Add(this.labelLeaps);
             this.Controls.Add(this.textBoxLeaps);
             this.Controls.Add(this.labelSigma);
@@ -699,7 +706,6 @@
             this.Controls.Add(this.checkBoxMakeVideos);
             this.Controls.Add(this.checkBoxShowBest);
             this.Controls.Add(this.checkBoxDropOnHead);
-            this.Controls.Add(this.checkBox2Kids);
             this.Controls.Add(this.checkBoxAdditiveNoise);
             this.Controls.Add(this.textBoxBestFitness);
             this.Controls.Add(this.textBoxGeneration);
@@ -805,7 +811,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckBox checkBoxDrawDNA;
         private System.Windows.Forms.CheckBox checkBoxDrawName;
-        private System.Windows.Forms.CheckBox checkBox2Kids;
         private System.Windows.Forms.CheckBox checkBoxDropOnHead;
         private System.Windows.Forms.CheckBox checkBoxDbgDrawAngSprings;
         private System.Windows.Forms.Label labelBestFitness;
@@ -823,6 +828,8 @@
     private System.Windows.Forms.Label labelSigma;
         private System.Windows.Forms.TextBox textBoxLeaps;
         private System.Windows.Forms.Label labelLeaps;
+        private System.Windows.Forms.Label labelNumChildrenPerMating;
+        private System.Windows.Forms.TextBox textBoxNumChildrenPerMating;
     }
 }
 

@@ -126,7 +126,7 @@ namespace GANNSim.species
             }
         }
 
-        public void Breed(int num_matings, int num_crossover_pts, bool two_child_policy)
+        public void Breed(int num_matings, int num_crossover_pts, int num_children_per_mating)
         {
             // At the end of the epoch everyone will become potential parents.
             foreach (Individual individual in m_population)
@@ -173,7 +173,7 @@ namespace GANNSim.species
                     dad = m_population[dad_idx];
                 } while (dad == mom);
 
-                Individual[] children = mom.Mate(dad, num_crossover_pts, two_child_policy);
+                Individual[] children = mom.Mate(dad, num_crossover_pts, num_children_per_mating);
                 for (int child_idx = 0; child_idx < children.Length; child_idx++)
                     children[child_idx].Genome.Mutate(m_mutation_rate, m_use_additive_noise, m_additive_noise_amp);
                 m_next_generation.AddRange(children);

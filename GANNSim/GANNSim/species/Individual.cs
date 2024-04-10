@@ -106,14 +106,13 @@ namespace GANNSim.species
             set;
         }
 
-        public Individual[] Mate(Individual partner, int num_crossover_pts, bool two_children)
+        public Individual[] Mate(Individual partner, int num_crossover_pts, int num_children_per_mating)
         {
             Individual[] children;
-            if (two_children)
-                children = new Individual[2];
-            else
-                children = new Individual[1];
-            Genome[] child_genomes = this.Genome.Mate(partner.Genome, num_crossover_pts, two_children);
+            if (num_children_per_mating <= 0)
+                num_children_per_mating = 1;
+            children = new Individual[num_children_per_mating];
+            Genome[] child_genomes = this.Genome.Mate(partner.Genome, num_crossover_pts, num_children_per_mating);
             for (int child_idx = 0; child_idx < children.Length; child_idx++)
             {
                 children[child_idx] = new Individual(this.m_design_xml_doc, this.m_drop_on_head);

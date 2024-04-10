@@ -44,16 +44,15 @@ namespace GANNSim.species
             this.calc_draw_data();
         }
 
-        public Genome[] Mate(Genome parnter_genome, int num_crossover_pts, bool two_children)
+        public Genome[] Mate(Genome parnter_genome, int num_crossover_pts, int num_children_per_mating)
         {
             Genome[] child_genomes;
-            if (two_children)
-                child_genomes = new Genome[2];
-            else
-                child_genomes = new Genome[1];
+            if (num_children_per_mating <= 0)
+                num_children_per_mating = 1;
+            child_genomes = new Genome[num_children_per_mating];
 
-            Chromosome[] neural_weights_chromosomes = this.m_chromosome_neural_weights.Mate(parnter_genome.m_chromosome_neural_weights, num_crossover_pts, two_children);
-            Chromosome[] neural_alphas_chromosomes = this.m_chromosome_neural_alphas.Mate(parnter_genome.m_chromosome_neural_alphas, num_crossover_pts, two_children);
+            Chromosome[] neural_weights_chromosomes = this.m_chromosome_neural_weights.Mate(parnter_genome.m_chromosome_neural_weights, num_crossover_pts, num_children_per_mating);
+            Chromosome[] neural_alphas_chromosomes = this.m_chromosome_neural_alphas.Mate(parnter_genome.m_chromosome_neural_alphas, num_crossover_pts, num_children_per_mating);
             for (int child_idx = 0; child_idx < child_genomes.Length; child_idx++)
             {
                 child_genomes[child_idx] = new Genome();

@@ -51,7 +51,7 @@ namespace GANNSim
             public int num_phys_subiters;
             public float concussion_penalty_factor;
             public bool drop_on_head;
-            public bool two_child_policy;
+            public int num_children_per_mating;
             public bool show_best;
             public bool only_run_relevant;
             public int thread_priority;
@@ -303,7 +303,10 @@ namespace GANNSim
 
             m_bgw_params.drop_on_head = checkBoxDropOnHead.Checked;
 
-            m_bgw_params.two_child_policy = checkBox2Kids.Checked;
+            if (int.TryParse(textBoxNumChildrenPerMating.Text, out i_result))
+                m_bgw_params.num_children_per_mating = i_result;
+            else
+                m_bgw_params.num_children_per_mating = 2;
 
             // Population params.
 
@@ -379,11 +382,9 @@ namespace GANNSim
                             m_population.Breed(
                                 m_bgw_params.num_matings, 
                                 m_bgw_params.num_crossover_pts,
-                                m_bgw_params.two_child_policy);
+                                m_bgw_params.num_children_per_mating);
                             m_population.PerformNaturalSelection(
-                                m_bgw_params.two_child_policy ? 
-                                m_bgw_params.num_matings * 2 :
-                                m_bgw_params.num_matings);
+                                m_bgw_params.num_matings * m_bgw_params.num_children_per_mating);
                             m_population.InsertBest(best_individual, 1.0f);
                             m_population.Reset();
                         }
@@ -512,9 +513,9 @@ namespace GANNSim
                 XmlNode evaluation_node = doc.CreateElement("evaluation_cycles");
                 settings_node.AppendChild(evaluation_node);
                 evaluation_node.InnerText = textBoxEvaluationCycles.Text;
-                XmlNode twochild_node = doc.CreateElement("two_child_policy");
-                settings_node.AppendChild(twochild_node);
-                twochild_node.InnerText = checkBox2Kids.Checked.ToString().ToLower();
+                XmlNode children_per_mating_node = doc.CreateElement("children_per_mating");
+                settings_node.AppendChild(children_per_mating_node);
+                children_per_mating_node.InnerText = textBoxNumChildrenPerMating.Text;
                 XmlNode matings_node = doc.CreateElement("num_matings");
                 settings_node.AppendChild(matings_node);
                 matings_node.InnerText = textBoxNumMatings.Text;
@@ -630,7 +631,7 @@ namespace GANNSim
                 textBoxGeneration.Text = settings_node["generation"].InnerText;
                 textBoxBestFitness.Text = settings_node["best_fitness"].InnerText;
                 textBoxEvaluationCycles.Text = settings_node["evaluation_cycles"].InnerText;
-                checkBox2Kids.Checked = bool.Parse(settings_node["two_child_policy"].InnerText);
+                textBoxNumChildrenPerMating.Text = settings_node["children_per_mating"].InnerText;
                 textBoxNumMatings.Text = settings_node["num_matings"].InnerText;
                 textBoxMutationRate.Text = settings_node["mutation_rate"].InnerText;
                 textBoxCrossoverPts.Text = settings_node["num_crossover_pts"].InnerText;

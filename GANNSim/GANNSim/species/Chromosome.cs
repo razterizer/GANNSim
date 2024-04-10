@@ -83,7 +83,7 @@ namespace GANNSim.species
         }
 
         // Crossover
-        public Chromosome[] Mate(Chromosome partner, int num_crossover_pts, bool two_children)
+        public Chromosome[] Mate(Chromosome partner, int num_crossover_pts, int num_children_per_mating)
         {
             num_crossover_pts = Math.Min(num_crossover_pts, this.m_dna.Length - 1);
             m_crossover_pts.Clear();
@@ -125,10 +125,9 @@ namespace GANNSim.species
             }
 
             Chromosome[] children;
-            if (two_children)
-                children = new Chromosome[2];
-            else
-                children = new Chromosome[1];
+            if (num_children_per_mating <= 0)
+                num_children_per_mating = 1;
+             children = new Chromosome[num_children_per_mating];
 
             for (int child_idx = 0; child_idx < children.Length; child_idx++)
             {
