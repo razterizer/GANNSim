@@ -330,6 +330,16 @@ namespace GANNSim.species
             get { return m_population; }
         }
 
+        public int NumIndividuals
+        {
+            get { return m_population.Count; }
+        }
+
+        public Individual FirstIndividual
+        {
+            get { return m_population[0]; }
+        }
+
         public void Clear()
         {
             foreach (Individual individual in m_population)

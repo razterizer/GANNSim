@@ -176,8 +176,12 @@ namespace GANNSim
 
                 XmlNode body_node = m_design_xml_doc.FirstChild["body"];
                 XmlAttribute gain_attr = body_node.Attributes["output_gain"];
-                textBoxOutputGain.Text = gain_attr.Value;
                 m_bgw_params.output_gain = float.Parse(gain_attr.Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+
+                if (textBoxBrainSubiters.Text.Length == 0 && m_population.NumIndividuals > 0)
+                    textBoxBrainSubiters.Text = (m_population.FirstIndividual.Body.Brain.NumLayers - 1).ToString();
+                if (textBoxOutputGain.Text.Length == 0)
+                    textBoxOutputGain.Text = gain_attr.Value;
             }
             next_generation_movie_dir(false);
         }

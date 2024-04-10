@@ -201,6 +201,12 @@ namespace GANNSim.neural
             }
         }
 
+        public int NumLayers
+        {
+            get { return 2 + m_neurons_hidden_layers.Count; }
+        }
+
+
         public int NumWeights
         {
             get
