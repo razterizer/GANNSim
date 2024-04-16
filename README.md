@@ -19,6 +19,8 @@ https://youtu.be/uG-YQZPrTMU
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/04caaba0-acce-4875-b364-9c1d2ed4e509)
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/9338c3e1-ebdc-47df-b634-f00276ec5d51)
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/9afbe771-b84f-467a-b00e-aa48108f2586)
+![image](https://github.com/razterizer/GANNSim/assets/32767250/9ddf1910-0c20-45ee-a975-62cbb18bc7d6)
+
 
 
 
