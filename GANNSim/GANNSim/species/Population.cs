@@ -57,11 +57,11 @@ namespace GANNSim.species
             //Console.WriteLine(m_population[0].Genome.m_chromosome_neural_weights.BasePair(0));
         }
 
-        public void CalcFitness(float contact_penalty_factor)
+        public void CalcFitness(float contact_penalty_factor, float flight_penalty_factor)
         {
             foreach (Individual individual in m_population)
             {
-                individual.CalcFitness(contact_penalty_factor);
+                individual.CalcFitness(contact_penalty_factor, flight_penalty_factor);
             }
 
             // Sort individuals by fitness.

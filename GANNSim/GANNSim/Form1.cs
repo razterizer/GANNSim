@@ -50,6 +50,7 @@ namespace GANNSim
             public int num_brain_subiters;
             public int num_phys_subiters;
             public float concussion_penalty_factor;
+            public float flight_penalty_factor;
             public bool drop_on_head;
             public int num_children_per_mating;
             public bool show_best;
@@ -109,6 +110,9 @@ namespace GANNSim
 
             int ground_y = (int)Constants.m_ground_y;
             g.Clear(Color.White);
+            g.FillRectangle(Brushes.LawnGreen,
+                0, panelCanvas.Height - ground_y,
+                panelCanvas.Width, ground_y);
             g.DrawLine(Pens.ForestGreen,
                 0, panelCanvas.Height - ground_y,
                 panelCanvas.Width, panelCanvas.Height - ground_y);
@@ -303,6 +307,11 @@ namespace GANNSim
 
             m_bgw_params.drop_on_head = checkBoxDropOnHead.Checked;
 
+            if (float.TryParse(textBoxFlightPenaltyFactor.Text, NumberStyles.Any, NumberFormatInfo.InvariantInfo, out f_result))
+                m_bgw_params.flight_penalty_factor = f_result;
+            else
+                m_bgw_params.flight_penalty_factor = 0.0f;
+
             if (int.TryParse(textBoxNumChildrenPerMating.Text, out i_result))
                 m_bgw_params.num_children_per_mating = i_result;
             else
@@ -369,7 +378,7 @@ namespace GANNSim
                 {
                     if (m_num_iters >= m_bgw_params.evaluation_cycles_limit)
                     {
-                        m_population.CalcFitness(m_bgw_params.concussion_penalty_factor);
+                        m_population.CalcFitness(m_bgw_params.concussion_penalty_factor, m_bgw_params.flight_penalty_factor);
                         calc_and_show_stats();
                         if (m_population.Size == 1 || m_bgw_params.show_best)
                         {
@@ -537,6 +546,9 @@ namespace GANNSim
                 XmlNode droponhead_node = doc.CreateElement("drop_on_head");
                 settings_node.AppendChild(droponhead_node);
                 droponhead_node.InnerText = checkBoxDropOnHead.Checked.ToString().ToLower();
+                XmlNode flight_node = doc.CreateElement("flight_penalty_factor");
+                settings_node.AppendChild(flight_node);
+                flight_node.InnerText = textBoxFlightPenaltyFactor.Text;
                 XmlNode onlyrunrelevant_node = doc.CreateElement("only_run_relevant");
                 settings_node.AppendChild(onlyrunrelevant_node);
                 onlyrunrelevant_node.InnerText = checkBoxOnlyRunRelevant.Checked.ToString().ToLower();
@@ -639,6 +651,7 @@ namespace GANNSim
                 textBoxAdditiveNoiseAmplitude.Text = settings_node["additive_noise_amplitude"].InnerText;
                 textBoxContactPenaltyFactor.Text = settings_node["concussion_penalty_factor"].InnerText;
                 checkBoxDropOnHead.Checked = bool.Parse(settings_node["drop_on_head"].InnerText);
+                textBoxFlightPenaltyFactor.Text = settings_node["flight_penalty_factor"].InnerText;
                 XmlNode onlyrunrelevant_node = settings_node["only_run_relevant"];
                 if (onlyrunrelevant_node != null) // To make it backwards-compatible with earlier xml-model versions.
                     checkBoxOnlyRunRelevant.Checked = bool.Parse(onlyrunrelevant_node.InnerText);

@@ -69,10 +69,14 @@ namespace GANNSim.species
             get { return m_body; }
         }
 
-        public void CalcFitness(float contact_penalty_factor)
+        public void CalcFitness(float contact_penalty_factor, float flight_penalty_factor)
         {
             if (!IsSimulated)
-                m_fitness = (double)m_body.MeanPosition.X / (double)Constants.m_canvas_width - (double)contact_penalty_factor * (double)m_body.NumHeadContacts;
+            {
+                m_fitness = (double)m_body.MeanPosition.X / (double)Constants.m_canvas_width;
+                m_fitness -= (double)contact_penalty_factor * (double)m_body.NumHeadContacts;
+                m_fitness -= (double)flight_penalty_factor * Convert.ToDouble(m_body.IsFlying);
+            }
         }
 
         public void NormalizeFitness(double min_fitness, double tot_fitness)
