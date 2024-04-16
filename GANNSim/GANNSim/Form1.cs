@@ -32,6 +32,7 @@ namespace GANNSim
         GraphWindow m_graph;
         int m_num_leaps = 0;
         double m_curr_best_fitness = 0;
+        Brush m_sky_brush;
 
         class BGWorkerParams
         {
@@ -77,6 +78,7 @@ namespace GANNSim
             comboBoxIntegrationMethod.SelectedIndex = 1;
             comboBoxThreadPriority.SelectedIndex = 3;
             m_bgw_params = new BGWorkerParams();
+            m_sky_brush = new SolidBrush(Color.FromArgb(100, Color.LightSkyBlue));
             fill_params();
 
             m_movie_dir_base_path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -113,6 +115,8 @@ namespace GANNSim
             g.FillRectangle(Brushes.LawnGreen,
                 0, panelCanvas.Height - ground_y,
                 panelCanvas.Width, ground_y);
+            g.FillRectangle(m_sky_brush,
+                0, 0, panelCanvas.Width, panelCanvas.Height - ground_y);
             g.DrawLine(Pens.ForestGreen,
                 0, panelCanvas.Height - ground_y,
                 panelCanvas.Width, panelCanvas.Height - ground_y);
