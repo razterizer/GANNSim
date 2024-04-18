@@ -75,7 +75,7 @@ namespace GANNSim.species
             {
                 m_fitness = (double)m_body.MeanPosition.X / (double)Constants.m_canvas_width;
                 m_fitness -= (double)contact_penalty_factor * (double)m_body.NumHeadContacts;
-                m_fitness -= (double)flight_penalty_factor * Convert.ToDouble(m_body.IsFlying);
+                m_fitness -= (double)flight_penalty_factor * m_body.FlightTime;
             }
         }
 

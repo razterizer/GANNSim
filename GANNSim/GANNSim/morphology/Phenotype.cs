@@ -28,7 +28,7 @@ namespace GANNSim.morphology
         int m_num_head_contacts;
         bool m_drop_on_head;
 
-        bool m_is_flying;
+        float m_flight_time;
 
         bool m_uses_mean_orientation;
         bool m_uses_mean_angvel;
@@ -45,7 +45,7 @@ namespace GANNSim.morphology
             m_last_angle = float.NaN;
             m_output_gain = 0.25f;
             m_num_head_contacts = 0;
-            m_is_flying = false;
+            m_flight_time = 0;
             m_uses_mean_orientation = false;
             m_uses_mean_angvel = false;
 
@@ -381,7 +381,7 @@ namespace GANNSim.morphology
             foreach (Limb limb in m_limbs.Values)
                 limb.UpdateSpring(solver_1d, dt);
 
-            m_is_flying = true;
+            bool is_flying = true;
             foreach (Joint joint in m_joints.Values)
             {
                 if (joint.IsHead)
@@ -397,8 +397,10 @@ namespace GANNSim.morphology
                     //    m_head_was_in_contact = false;
                 }
                 if (joint.InContact)
-                    m_is_flying = false;
+                    is_flying = false;
             }
+            if (is_flying)
+                m_flight_time += dt;
         }
 
         public float Mass
@@ -482,9 +484,9 @@ namespace GANNSim.morphology
             get { return m_num_head_contacts; }
         }
 
-        public bool IsFlying
+        public float FlightTime
         {
-            get { return m_is_flying; }
+            get { return m_flight_time; }
         }
 
         public Brain Brain
@@ -565,7 +567,7 @@ namespace GANNSim.morphology
             m_brain.Clear();
             m_last_angle = float.NaN;
             m_num_head_contacts = 0;
-            m_is_flying = false;
+            m_flight_time = 0;
         }
 
         public int NumJoints
