@@ -292,7 +292,7 @@ namespace GANNSim.species
                     0, m_population.Count,
                     debug_draw_joints, debug_draw_angsprings,
                     draw_dna, draw_name);
-                int layer_offs = 5;
+                int layer_offs = 2;
                 int num_layers = 1 + layer_offs;
                 int layer_idx = num_layers;
                 for (int individual_idx = 1; individual_idx < m_population.Count; individual_idx++)
