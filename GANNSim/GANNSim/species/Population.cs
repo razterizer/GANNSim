@@ -118,7 +118,7 @@ namespace GANNSim.species
         {
             if (m_random.NextDouble() < replacement_probability)
             {
-                if (!(m_population.Count > 0 && m_population[0] == best_individual))
+                if (m_population.Count > 0 && m_population[0] != best_individual)
                 {
                     m_population.Remove(m_population.Last());
                     m_population.Insert(0, best_individual);
