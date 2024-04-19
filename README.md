@@ -8,7 +8,11 @@ https://youtu.be/WuagYGnwiw0
 
 https://youtu.be/uG-YQZPrTMU
 
-![image](https://github.com/razterizer/GANNSim/assets/32767250/35c259fe-8db7-41ce-a5d1-cbe9a7692fc9)
+
+![image](https://github.com/razterizer/GANNSim/assets/32767250/ae341bc3-8c62-4ff7-97ff-47edd4c2ceb9)
+![image](https://github.com/razterizer/GANNSim/assets/32767250/a3ddf24b-46af-4a4d-9658-22a2b812a97d)
+![image](https://github.com/razterizer/GANNSim/assets/32767250/8cddffbb-e136-4df7-bfb1-4bccec83bb03)
+
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/b6143853-c8bc-4d03-acbf-276c17d87e1a)
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/ac373ce0-009b-4f8c-930c-b05d6f08b2b2)
 ![image](https://github.com/razterizer/GANNSim/assets/32767250/ad46ec3f-b4ce-4956-a091-ace5c8375f8f)
