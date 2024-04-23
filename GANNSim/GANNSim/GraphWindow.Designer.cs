@@ -40,6 +40,8 @@ namespace GANNSim
             this.labelLegendMu = new System.Windows.Forms.Label();
             this.labelFitness = new System.Windows.Forms.Label();
             this.labelStats = new System.Windows.Forms.Label();
+            this.panelGraphDistribution = new System.Windows.Forms.Panel();
+            this.labelDistribution = new System.Windows.Forms.Label();
             this.panelGraphFitness.SuspendLayout();
             this.panelLegendFitness.SuspendLayout();
             this.panelGraphStats.SuspendLayout();
@@ -55,7 +57,7 @@ namespace GANNSim
             this.panelGraphFitness.Controls.Add(this.panelLegendFitness);
             this.panelGraphFitness.Location = new System.Drawing.Point(12, 28);
             this.panelGraphFitness.Name = "panelGraphFitness";
-            this.panelGraphFitness.Size = new System.Drawing.Size(829, 221);
+            this.panelGraphFitness.Size = new System.Drawing.Size(838, 221);
             this.panelGraphFitness.TabIndex = 0;
             this.panelGraphFitness.Paint += new System.Windows.Forms.PaintEventHandler(this.panelGraph_Paint);
             // 
@@ -105,7 +107,7 @@ namespace GANNSim
             this.panelGraphStats.Controls.Add(this.panelLegendStats);
             this.panelGraphStats.Location = new System.Drawing.Point(12, 281);
             this.panelGraphStats.Name = "panelGraphStats";
-            this.panelGraphStats.Size = new System.Drawing.Size(829, 253);
+            this.panelGraphStats.Size = new System.Drawing.Size(838, 253);
             this.panelGraphStats.TabIndex = 1;
             this.panelGraphStats.Paint += new System.Windows.Forms.PaintEventHandler(this.panelGraphStats_Paint);
             // 
@@ -177,12 +179,36 @@ namespace GANNSim
             this.labelStats.TabIndex = 0;
             this.labelStats.Text = "Population Fitness Statistics:";
             // 
+            // panelGraphDistribution
+            // 
+            this.panelGraphDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelGraphDistribution.BackColor = System.Drawing.SystemColors.Window;
+            this.panelGraphDistribution.Location = new System.Drawing.Point(856, 28);
+            this.panelGraphDistribution.Name = "panelGraphDistribution";
+            this.panelGraphDistribution.Size = new System.Drawing.Size(81, 506);
+            this.panelGraphDistribution.TabIndex = 2;
+            this.panelGraphDistribution.Paint += new System.Windows.Forms.PaintEventHandler(this.panelGraphDistribution_Paint);
+            // 
+            // labelDistribution
+            // 
+            this.labelDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDistribution.AutoSize = true;
+            this.labelDistribution.Location = new System.Drawing.Point(853, 12);
+            this.labelDistribution.Name = "labelDistribution";
+            this.labelDistribution.Size = new System.Drawing.Size(62, 13);
+            this.labelDistribution.TabIndex = 3;
+            this.labelDistribution.Text = "Distribution:";
+            // 
             // GraphWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 546);
+            this.ClientSize = new System.Drawing.Size(949, 546);
             this.ControlBox = false;
+            this.Controls.Add(this.labelDistribution);
+            this.Controls.Add(this.panelGraphDistribution);
             this.Controls.Add(this.panelGraphStats);
             this.Controls.Add(this.labelStats);
             this.Controls.Add(this.labelFitness);
@@ -216,5 +242,7 @@ namespace GANNSim
         private System.Windows.Forms.Label labelLegendSigma;
         private System.Windows.Forms.Label labelLegendMu;
         private System.Windows.Forms.Label labelLegendRange;
+        private System.Windows.Forms.Panel panelGraphDistribution;
+        private System.Windows.Forms.Label labelDistribution;
     }
 }

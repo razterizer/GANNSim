@@ -36,8 +36,10 @@ namespace GANNSim
         private bool enable_draw_pop_sigma = true;
         private Bitmap m_back_buffer_fitness = null;
         private Bitmap m_back_buffer_stats = null;
+        private Bitmap m_back_buffer_distribution = null;
         private bool m_resized = false;
         private List<double[]> m_pop_fitness_buckets = new List<double[]>();
+        private List<double> m_pop_fitness_t_param = new List<double>();
         //private int m_pop_size = 0;
         private Point m_legend_fitness_pos_orig = Point.Empty;
         private Point m_legend_stats_pos_orig = Point.Empty;
@@ -73,7 +75,7 @@ namespace GANNSim
 
 #if false
             m_pop_size = s.pop_fitness.Count;
-            int num_buckets = Math.Max(20, m_pop_size/4); //panelGraphStats.ClientRectangle.Height;
+            int num_buckets = panelGraphDistribution.ClientRectangle.Height; //Math.Max(20, m_pop_size/4); //panelGraphStats.ClientRectangle.Height;
             double[] buckets = new double[num_buckets];
             //int fitnesses_per_bucket = (int)(m_pop_size / num_buckets);
             double bucket_fitness_range = (s.pop_max - s.pop_min) / num_buckets;
@@ -108,6 +110,14 @@ namespace GANNSim
             min_pop_sigma = Math.Min(min_pop_sigma, s.pop_sigma);
             max_pop_sigma = Math.Max(max_pop_sigma, s.pop_sigma);
 
+            m_pop_fitness_t_param.Clear();
+            double range_scale = 1 / (max_pop_range - min_pop_range);
+            foreach (double fitness in s.pop_fitness)
+            {
+                double t = (fitness - min_pop_range)*range_scale;
+                m_pop_fitness_t_param.Add(t);
+            }
+
             RefreshGraphs();
         }
 
@@ -121,6 +131,12 @@ namespace GANNSim
         {
             draw_backbuffer_stats();
             e.Graphics.DrawImageUnscaled(m_back_buffer_stats, Point.Empty);
+        }
+
+        private void panelGraphDistribution_Paint(object sender, PaintEventArgs e)
+        {
+            draw_backbuffer_distribution();
+            e.Graphics.DrawImageUnscaled(m_back_buffer_distribution, Point.Empty);
         }
 
         private void DrawList(RectangleF rec, Graphics gfx, List<double> list, Pen line_pen, Brush point_brush, double min_val, double max_val, bool hilight_increments, bool semilogy)
@@ -251,6 +267,7 @@ namespace GANNSim
         {
             panelGraphFitness.Refresh();
             panelGraphStats.Refresh();
+            panelGraphDistribution.Refresh();
         }
 
         private void labelLegendBestFitness_Click(object sender, EventArgs e)
@@ -354,6 +371,29 @@ namespace GANNSim
             g.Dispose();
         }
 
+        private void draw_backbuffer_distribution()
+        {
+            if (m_back_buffer_distribution == null || m_resized)
+                m_back_buffer_distribution = new Bitmap(panelGraphDistribution.Width, panelGraphDistribution.Height);
+            Graphics g = Graphics.FromImage(m_back_buffer_distribution);
+
+            g.Clear(Color.White);
+
+            var rec = g.VisibleClipBounds;
+
+            double x1 = rec.Left;
+            double x2 = rec.Right;
+            foreach (double t in m_pop_fitness_t_param)
+            {
+                double y = (1 - t) * rec.Height;
+                g.DrawLine(Pens.Black, (int)x1, (int)y, (int)x2, (int)y);
+            }
+
+            //DrawPopFitness(rec, g, min_pop_range, max_pop_range);
+
+            g.Dispose();
+        }
+
         private void panelLegendFitness_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -413,5 +453,6 @@ namespace GANNSim
                     panelLegendStats.Location = m_legend_stats_pos_orig;
             }
         }
+
     }
 }
