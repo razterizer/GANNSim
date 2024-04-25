@@ -110,6 +110,12 @@ namespace GANNSim.species
             set;
         }
 
+        public bool DropOnHead
+        {
+            get { return m_drop_on_head; }
+            set { m_drop_on_head = value; }
+        }
+
         public Individual[] Mate(Individual partner, int num_crossover_pts, int num_children_per_mating)
         {
             Individual[] children;

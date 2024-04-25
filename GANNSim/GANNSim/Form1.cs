@@ -13,6 +13,12 @@ using GANNSim.species;
 using MathLib.utils;
 using System.IO;
 
+// #TODO:
+// 1. Add fitness bias.
+// 2. Show children in population fitness distribution graph as red lines.
+// 3. Simulated annealing by diminishing either the mutation rate or mutation amplitude as a function of generation and/or std-dev.
+// -- 4. Make sure widgets update the background worker params properly when changed during simulation.
+
 namespace GANNSim
 {
     public partial class Form1 : Form
@@ -418,6 +424,10 @@ namespace GANNSim
                     //Individual individual = m_population.Best;
 
                     fill_params();
+                    m_population.AdditiveNoiseAmplitude = m_bgw_params.additive_noise_amp;
+                    m_population.UseAdditiveNoise = m_bgw_params.use_additive_noise;
+                    m_population.MutationRate = m_bgw_params.mutation_rate;
+                    m_population.DropOnHead = m_bgw_params.drop_on_head;
                     m_population.OutputGain = m_bgw_params.output_gain;
                     backgroundWorker1.RunWorkerAsync();
                 }

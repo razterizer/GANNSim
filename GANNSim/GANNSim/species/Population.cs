@@ -22,7 +22,7 @@ namespace GANNSim.species
             m_random = new Random((int)DateTime.Now.Ticks);
         }
 
-        public Population(System.Xml.XmlDocument design_xml_doc, bool drop_on_head, 
+        public Population(System.Xml.XmlDocument design_xml_doc, bool drop_on_head,
                           float mutation_rate, bool use_additive_noise, float additive_noise_amp,
                           int init_population_size)
         {
@@ -239,8 +239,8 @@ namespace GANNSim.species
         }
 
         public void CurrPopulationStepSimulation(float fix_dt, Phenotype.IntegrationMethod integration_method,
-            bool use_brain, 
-            int num_main_subiters, int num_brain_subiters, int num_phys_subiters, 
+            bool use_brain,
+            int num_main_subiters, int num_brain_subiters, int num_phys_subiters,
             bool show_best, bool only_run_relevant, int thread_priority)
         {
             List<Individual> population_subset = null;
@@ -276,8 +276,8 @@ namespace GANNSim.species
             }
         }
 
-        public void Draw(System.Drawing.Graphics g, 
-            bool debug_draw_joints, bool debug_draw_angsprings, 
+        public void Draw(System.Drawing.Graphics g,
+            bool debug_draw_joints, bool debug_draw_angsprings,
             bool draw_dna, bool draw_name,
             bool show_best, bool only_run_relevant)
         {
@@ -323,6 +323,33 @@ namespace GANNSim.species
         {
             foreach (Individual individual in m_population)
                 individual.Body.ApplyForce(p);
+        }
+
+        public float AdditiveNoiseAmplitude
+        {
+            get { return m_additive_noise_amp; }
+            set { m_additive_noise_amp = value; }
+        }
+
+        public bool UseAdditiveNoise
+        {
+            get { return m_use_additive_noise; }
+            set { m_use_additive_noise = value; }
+        }
+
+        public float MutationRate
+        {
+            get { return m_mutation_rate; }
+            set { m_mutation_rate = value; }
+        }
+
+        public bool DropOnHead
+        {
+            set
+            {
+                foreach (Individual individual in m_population)
+                    individual.DropOnHead = value;
+            }
         }
 
         public float OutputGain
