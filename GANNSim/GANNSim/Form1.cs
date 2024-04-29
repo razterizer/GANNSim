@@ -18,6 +18,7 @@ using System.IO;
 // 2. Show children in population fitness distribution graph as red lines.
 // 3. Simulated annealing by diminishing either the mutation rate or mutation amplitude as a function of generation and/or std-dev.
 // -- 4. Make sure widgets update the background worker params properly when changed during simulation.
+// 5. Fix crash bug due to all individuals having the same fitness.
 
 namespace GANNSim
 {
