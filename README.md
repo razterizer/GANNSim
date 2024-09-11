@@ -1,5 +1,7 @@
 # GANNSim
 
+![GitHub License](https://img.shields.io/github/license/razterizer/GANNSim?color=blue)
+
 This is a GANN Simulator (Genetic Algorithms Neural Network) that allows you to take a designed GANN creature designed in [`GANNDesign`](https://github.com/razterizer/GANNDesign) and simulate it.
 
 The objective for each creature is to reach as far as possible to the right side during the alotted time. It's success is measured by its fitness value.
